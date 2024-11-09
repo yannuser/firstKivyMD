@@ -1,0 +1,96 @@
+MDBoxLayout:
+    orientation: "vertical"
+
+    MDTopAppBar:
+        left_action_items: [["menu", lambda x: app.callback()]]
+        right_action_items: [["account", lambda x: app.account_callback()]]
+
+    MDGridLayout:
+        cols: 1
+
+        MDLabel:
+            size_hint: (1, 0.3)
+            text: "$444"
+            font_size: "32sp"
+            halign: "center"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint: 1, 0.7
+            pos_hint: {"center_x": 0.5}  # Center the tab container horizontally
+
+            MDTabs:
+                on_tab_switch: app.on_tab_switch
+
+                Tab:
+                    title: "Overview"
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        MDScrollView:
+                            do_scroll_x: False
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: None  # Allow scrolling vertically
+                                height: self.minimum_height  # Height is based on content size
+
+                                MDLabel:
+                                    size_hint: (1, None)
+                                    text: "Welcome to the Overview tab"
+                                    halign: "center"
+                                    font_size: "24sp"
+
+
+                Tab:
+                    title: "Expenses"
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        MDScrollView:
+                            do_scroll_x: False
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: None  # Allow scrolling vertically
+                                height: self.minimum_height  # Height is based on content size
+
+                                MDLabel:
+                                    size_hint: (1, None)
+                                    text: "Welcome to the Overview tab"
+                                    halign: "center"
+                                    font_size: "24sp"
+
+                Tab:
+                    title: "Income"
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        MDScrollView:
+                            do_scroll_x: False
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: None  # Allow scrolling vertically
+                                height: self.minimum_height  # Height is based on content size
+                                padding: "10dp"  # Adds space around the card
+                                spacing: "10dp"  # Adds space between widgets in the layout
+
+                                MDCard:
+                                    style: "outlined"
+                                    pos_hint: {"center_x": .5, "center_y": .5}
+                                    padding: "4dp"
+                                    size_hint: None, None
+                                    size: root.width * 0.85, "100dp"
+                                    canvas.before:
+                                        RoundedRectangle:
+                                            radius: [15]  # Radius for rounded corners (adjust as needed)
+
+
+                                    MDRelativeLayout:
+
+                                        MDIconButton:
+                                            icon: "dots-vertical"
+                                            pos_hint: {"top": 1, "right": 1}
+
+                                        MDLabel:
+                                            text: "Card"
+                                            adaptive_size: True
+                                            pos: "12dp", "12dp"
+                                            bold: True
+
+
