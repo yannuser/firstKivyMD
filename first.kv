@@ -17,9 +17,10 @@ MDBoxLayout:
         MDBoxLayout:
             orientation: "vertical"
             size_hint: 1, 0.7
-            pos_hint: {"center_x": 0.5}  # Center the tab container horizontally
+            pos_hint: {"center_x": 0.5}
 
             MDTabs:
+                id: tabs
                 on_tab_switch: app.on_tab_switch
 
                 Tab:
@@ -30,67 +31,40 @@ MDBoxLayout:
                             do_scroll_x: False
                             MDBoxLayout:
                                 orientation: "vertical"
-                                size_hint_y: None  # Allow scrolling vertically
-                                height: self.minimum_height  # Height is based on content size
-
+                                size_hint_y: None
+                                height: self.minimum_height
                                 MDLabel:
                                     size_hint: (1, None)
                                     text: "Welcome to the Overview tab"
                                     halign: "center"
                                     font_size: "24sp"
-
 
                 Tab:
                     title: "Expenses"
+                    id: Expenses
                     MDBoxLayout:
                         orientation: "vertical"
                         MDScrollView:
                             do_scroll_x: False
                             MDBoxLayout:
+                                id: expenses_container
                                 orientation: "vertical"
-                                size_hint_y: None  # Allow scrolling vertically
-                                height: self.minimum_height  # Height is based on content size
-
-                                MDLabel:
-                                    size_hint: (1, None)
-                                    text: "Welcome to the Overview tab"
-                                    halign: "center"
-                                    font_size: "24sp"
+                                size_hint_y: None
+                                height: self.minimum_height
+                                padding: "10dp"
+                                spacing: "10dp"
 
                 Tab:
                     title: "Income"
+                    id: Income
                     MDBoxLayout:
                         orientation: "vertical"
                         MDScrollView:
                             do_scroll_x: False
                             MDBoxLayout:
+                                id: income_container
                                 orientation: "vertical"
-                                size_hint_y: None  # Allow scrolling vertically
-                                height: self.minimum_height  # Height is based on content size
-                                padding: "10dp"  # Adds space around the card
-                                spacing: "10dp"  # Adds space between widgets in the layout
-
-                                MDCard:
-                                    style: "outlined"
-                                    pos_hint: {"center_x": .5, "center_y": .5}
-                                    padding: "4dp"
-                                    size_hint: None, None
-                                    size: root.width * 0.85, "100dp"
-                                    canvas.before:
-                                        RoundedRectangle:
-                                            radius: [15]  # Radius for rounded corners (adjust as needed)
-
-
-                                    MDRelativeLayout:
-
-                                        MDIconButton:
-                                            icon: "dots-vertical"
-                                            pos_hint: {"top": 1, "right": 1}
-
-                                        MDLabel:
-                                            text: "Card"
-                                            adaptive_size: True
-                                            pos: "12dp", "12dp"
-                                            bold: True
-
-
+                                size_hint_y: None
+                                height: self.minimum_height
+                                padding: "10dp"
+                                spacing: "10dp"
