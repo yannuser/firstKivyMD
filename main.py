@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivy.properties import StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.app import MDApp
+from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.card import MDCard
 
@@ -16,14 +17,39 @@ data = {
     ],
 }
 
+
 class Tab(BoxLayout, MDTabsBase):
     """Class implementing content for each tab."""
     title = StringProperty("")
 
+
 class FirstApp(MDApp):
     def build(self):
         self.theme_cls.primary_palette = "Blue"
+
+        self.menu_items = [
+            {"viewclass": "OneLineListItem", "text": "Home", "on_release": lambda x="home": self.menu_callback(x)},
+            {"viewclass": "OneLineListItem", "text": "Modify", "on_release": lambda x="modify": self.menu_callback(x)},
+            {"viewclass": "OneLineListItem", "text": "Settings", "on_release": lambda x="settings": self.menu_callback(x)},
+        ]
+
+        self.menu = MDDropdownMenu(
+            items=self.menu_items,
+            width_mult=4,
+        )
         return Builder.load_file('first.kv')
+
+    def open_menu(self, instance):
+        self.menu.caller = instance
+        self.menu.open()
+
+    def menu_callback(self, screen_name):
+        # print(f"Nom Ecran: {screen_name}")
+        self.root.current = screen_name
+        self.menu.dismiss()
+
+    # def change_screen(self, screen_name):
+    #     self.root.current = screen_name
 
     def on_start(self):
         self.load_cards("Expenses")
@@ -87,4 +113,6 @@ class FirstApp(MDApp):
             adaptive_height=True,
         )
 
-FirstApp().run()
+
+if __name__ == '__main__':
+    FirstApp().run()

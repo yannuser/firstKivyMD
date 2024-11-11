@@ -1,70 +1,109 @@
-MDBoxLayout:
-    orientation: "vertical"
-
-    MDTopAppBar:
-        left_action_items: [["menu", lambda x: app.callback()]]
-        right_action_items: [["account", lambda x: app.account_callback()]]
-
-    MDGridLayout:
-        cols: 1
-
-        MDLabel:
-            size_hint: (1, 0.3)
-            text: "$444"
-            font_size: "32sp"
-            halign: "center"
-
+ScreenManager:
+    id: screen_manager
+    MDScreen:
+        name: "home"
         MDBoxLayout:
             orientation: "vertical"
-            size_hint: 1, 0.7
-            pos_hint: {"center_x": 0.5}
 
-            MDTabs:
-                id: tabs
-                on_tab_switch: app.on_tab_switch
+            MDTopAppBar:
+                left_action_items: [["menu", lambda x: app.open_menu(x)]]
+                right_action_items: [["account", lambda x: app.account_callback()]]
 
-                Tab:
-                    title: "Overview"
-                    MDBoxLayout:
-                        orientation: "vertical"
-                        MDScrollView:
-                            do_scroll_x: False
+            MDGridLayout:
+                cols: 1
+
+                MDLabel:
+                    size_hint: (1, 0.3)
+                    text: "$444"
+                    font_size: "32sp"
+                    halign: "center"
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint: 1, 0.7
+                    pos_hint: {"center_x": 0.5}
+
+                    MDTabs:
+                        id: tabs
+                        on_tab_switch: app.on_tab_switch
+
+                        Tab:
+                            title: "Overview"
                             MDBoxLayout:
                                 orientation: "vertical"
-                                size_hint_y: None
-                                height: self.minimum_height
-                                MDLabel:
-                                    size_hint: (1, None)
-                                    text: "Welcome to the Overview tab"
-                                    halign: "center"
-                                    font_size: "24sp"
+                                MDScrollView:
+                                    do_scroll_x: False
+                                    MDBoxLayout:
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        MDLabel:
+                                            size_hint: (1, None)
+                                            text: "Welcome to the Overview tab"
+                                            halign: "center"
+                                            font_size: "24sp"
 
-                Tab:
-                    title: "Expenses"
-                    id: Expenses
-                    MDBoxLayout:
-                        orientation: "vertical"
-                        MDScrollView:
-                            do_scroll_x: False
+                        Tab:
+                            title: "Expenses"
+                            id: Expenses
                             MDBoxLayout:
-                                id: expenses_container
                                 orientation: "vertical"
-                                size_hint_y: None
-                                height: self.minimum_height
-                                padding: "10dp"
-                                spacing: "10dp"
+                                MDScrollView:
+                                    do_scroll_x: False
+                                    MDBoxLayout:
+                                        id: expenses_container
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        padding: "10dp"
+                                        spacing: "10dp"
 
-                Tab:
-                    title: "Income"
-                    id: Income
-                    MDBoxLayout:
-                        orientation: "vertical"
-                        MDScrollView:
-                            do_scroll_x: False
+                        Tab:
+                            title: "Income"
+                            id: Income
                             MDBoxLayout:
-                                id: income_container
                                 orientation: "vertical"
-                                size_hint_y: None
-                                height: self.minimum_height
-                                padding: "10dp"
-                                spacing: "10dp"
+                                MDScrollView:
+                                    do_scroll_x: False
+                                    MDBoxLayout:
+                                        id: income_container
+                                        orientation: "vertical"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        padding: "10dp"
+                                        spacing: "10dp"
+
+    MDScreen:
+        name: "modify"
+        MDBoxLayout:
+            orientation: "vertical"
+
+            MDTopAppBar:
+                left_action_items: [["menu", lambda x: app.open_menu(x)]]
+                right_action_items: [["account", lambda x: app.account_callback()]]
+            MDGridLayout:
+                cols: 1
+
+                MDLabel:
+                    size_hint: (1, 0.3)
+                    text: "Modify"
+                    font_size: "32sp"
+                    halign: "center"
+
+
+    MDScreen:
+        name: "settings"
+        MDBoxLayout:
+            orientation: "vertical"
+
+            MDTopAppBar:
+                left_action_items: [["menu", lambda x: app.open_menu(x)]]
+                right_action_items: [["account", lambda x: app.account_callback()]]
+            MDGridLayout:
+                cols: 1
+
+                MDLabel:
+                    size_hint: (1, 0.3)
+                    text: "Settings"
+                    font_size: "32sp"
+                    halign: "center"
