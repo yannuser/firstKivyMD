@@ -51,6 +51,9 @@ class FirstApp(MDApp):
     # def change_screen(self, screen_name):
     #     self.root.current = screen_name
 
+    def account_callback(self):
+        print('c')
+
     def on_start(self):
         self.load_cards("Expenses")
         self.load_cards("Income")
