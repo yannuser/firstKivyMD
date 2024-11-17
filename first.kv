@@ -4,7 +4,7 @@ ScreenManager:
         name: "home"
         MDBoxLayout:
             orientation: "vertical"
-
+            padding: "10dp"
             MDTopAppBar:
                 left_action_items: [["menu", lambda x: app.open_menu(x)]]
                 right_action_items: [["account", lambda x: app.account_callback()]]
@@ -75,26 +75,61 @@ ScreenManager:
 
     MDScreen:
         name: "modify"
+
         MDBoxLayout:
             orientation: "vertical"
-
+            spacing: "15dp"
+            padding: "10dp"
             MDTopAppBar:
+                size_hint_y: None
+                height: dp(56)  # Standard AppBar height
                 left_action_items: [["menu", lambda x: app.open_menu(x)]]
                 right_action_items: [["account", lambda x: app.account_callback()]]
-            MDGridLayout:
-                cols: 1
 
-                MDLabel:
-                    size_hint: (1, 0.3)
-                    text: "Modify"
-                    font_size: "32sp"
-                    halign: "center"
+            MDBoxLayout:
+                orientation: "vertical"
+
+                MDScrollView:
+                    do_scroll_x: False
+
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: "30dp"
+
+                        MDLabel:
+                            text: "Total Incomes: $...."
+                            font_size: "32sp"
+                            halign: "center"
+
+                        MDBoxLayout:
+                            id: income_container
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: self.minimum_height
+                            padding: "10dp"
+                            spacing: "10dp"
+
+                        MDLabel:
+                            text: "Total Expenses: $...."
+                            font_size: "32sp"
+                            halign: "center"
+
+                        MDBoxLayout:
+                            id: expenses_container
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: self.minimum_height
+                            padding: "10dp"
+                            spacing: "10dp"
 
 
     MDScreen:
         name: "settings"
         MDBoxLayout:
             orientation: "vertical"
+            padding: "10dp"
 
             MDTopAppBar:
                 left_action_items: [["menu", lambda x: app.open_menu(x)]]
